@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <set xmlns:android="http://schemas.android.com/apk/res/android">
     <!--duration动画持续时间 pivitXY旋转中心点50表示中心点 repeatCount代表重复次数-->
-    <!--<rotate
+    <rotate
         android:fromDegrees="0"
         android:toDegrees="359"
         android:repeatCount="-1"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:duration="500" />-->
+        android:duration="500" />
     <!--from toXY的坐标-->
-    <!--<translate
+    <translate
         android:fromXDelta="0"
         android:fromYDelta="0"
         android:toXDelta="100"
         android:toYDelta="100"
         android:repeatCount="-1"
         android:duration="500"
-        ></translate>-->
+        ></translate>
     <!--scale放缩倍数0为无倍数即无   1位当前大小-->
-    <!--<scale
+    <scale
         android:fromXScale="0.0"
         android:toXScale="1.0"
         android:fromYScale="0.0"
         android:toYScale="1.0"
         android:pivotX="50%"
         android:pivotY="50%"
-        android:duration="1000" />-->
+        android:duration="1000" />
     <!--1.0为不透明  0.0透明-->
     <alpha
         android:fromAlpha="1.0"
