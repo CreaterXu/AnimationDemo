@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<set xmlns:android="http://schemas.android.com/apk/res/android">
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@anim/my_interpolator"><!--interpolator插值器-->
     <!--duration动画持续时间 pivitXY旋转中心点50表示中心点 repeatCount代表重复次数-->
     <rotate
         android:fromDegrees="0"
@@ -8,7 +9,7 @@
         android:pivotX="50%"
         android:pivotY="50%"
         android:duration="500" />
-    <!--from toXY的坐标-->
+    <!--&lt;!&ndash;from toXY的坐标&ndash;&gt;
     <translate
         android:fromXDelta="0"
         android:fromYDelta="0"
@@ -17,7 +18,7 @@
         android:repeatCount="-1"
         android:duration="500"
         ></translate>
-    <!--scale放缩倍数0为无倍数即无   1位当前大小-->
+    &lt;!&ndash;scale放缩倍数0为无倍数即无   1位当前大小&ndash;&gt;
     <scale
         android:fromXScale="0.0"
         android:toXScale="1.0"
@@ -26,9 +27,9 @@
         android:pivotX="50%"
         android:pivotY="50%"
         android:duration="1000" />
-    <!--1.0为不透明  0.0透明-->
+    &lt;!&ndash;1.0为不透明  0.0透明&ndash;&gt;
     <alpha
         android:fromAlpha="1.0"
         android:toAlpha="0.0"
-        android:duration="1000"></alpha>
+        android:duration="1000"></alpha>-->
 </set>

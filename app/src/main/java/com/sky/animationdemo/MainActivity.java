@@ -27,18 +27,14 @@ import android.view.animation.RotateAnimation;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.common.api.GoogleApiClient;
+
 import com.sky.animationdemo.frameAnimation.FrameAnimationActivity;
 import com.sky.animationdemo.proprityAnimation.PropertyAnimationActivity;
 import com.sky.animationdemo.viewAnimation.ViewAnimationActivity;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity {
 
-    private Button okButton;
-    private Button cancelButton;
-    private TextView moveTxt;
+
     private RecyclerView choiceRecyclerView;
     public static final int VIEW_ANIMATION=0;
     public static final int DRAWABLE_ANIMATION=1;
@@ -46,11 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     Animation animation;
     RotateAnimation rotateAnimation;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,10 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        okButton = (Button) findViewById(R.id.sports);
-        okButton.setOnClickListener(this);
-        cancelButton = (Button) findViewById(R.id.stop);
-        cancelButton.setOnClickListener(this);
+
 
         choiceRecyclerView = (RecyclerView) findViewById(R.id.choiceRecyclerView);
         choiceRecyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -74,7 +63,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 toActivity(position);
             }
         });
-        moveTxt = (TextView) findViewById(R.id.hello_world);
+
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,9 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         .setAction("Action", null).show();
             }
         });
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
     }
 
     @Override
@@ -110,23 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.sports) {
-            //通过xml形式加载view animation
-            animation = AnimationUtils.loadAnimation(this, R.anim.viewanimation);
-            //通过代码形式创造动画
 
-            RotateAnimation rotateAnimation = new RotateAnimation(0, 359);
-            rotateAnimation.setDuration(5000);
-
-
-            moveTxt.startAnimation(rotateAnimation);
-        } else if (v.getId() == R.id.stop) {
-            moveTxt.clearAnimation();
-        }
-
-    }
 
     /**
      * 跳转到各自的Activity
@@ -146,41 +117,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onStart() {
         super.onStart();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.sky.animationdemo/http/host/path")
-        );
-        AppIndex.AppIndexApi.start(client, viewAction);
     }
 
     @Override
     public void onStop() {
         super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        Action viewAction = Action.newAction(
-                Action.TYPE_VIEW, // TODO: choose an action type.
-                "Main Page", // TODO: Define a title for the content shown.
-                // TODO: If you have web page content that matches this app activity's content,
-                // make sure this auto-generated web page URL is correct.
-                // Otherwise, set the URL to null.
-                Uri.parse("http://host/path"),
-                // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.sky.animationdemo/http/host/path")
-        );
-        AppIndex.AppIndexApi.end(client, viewAction);
-        client.disconnect();
     }
 
 }
@@ -235,7 +176,6 @@ class MAdapter extends RecyclerView.Adapter<MAdapter.MViewHolder> {
 /**
  * This class is from the v7 samples of the Android SDK. It's not by me!
  * <p/>
- * See the license above for details.
  */
  class DividerItemDecoration extends RecyclerView.ItemDecoration {
 
@@ -268,7 +208,6 @@ class MAdapter extends RecyclerView.Adapter<MAdapter.MViewHolder> {
     @Override
     public void onDraw(Canvas c, RecyclerView parent) {
         Log.v("recyclerview-itemde", "onDraw()");
-
         if (mOrientation == VERTICAL_LIST) {
             drawVertical(c, parent);
         } else {
