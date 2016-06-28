@@ -13,8 +13,9 @@
     tools:showIn="@layout/activity_property_animation">
     <ImageView
         android:id="@+id/showImageView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/m24"/>
     <Button
         android:id="@+id/sports"
         android:layout_below="@+id/showImageView"
