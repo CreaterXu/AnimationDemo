@@ -3,6 +3,7 @@ package com.sky.animationdemo.proprityAnimation;
 import android.animation.Animator;
 import android.animation.AnimatorInflater;
 import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,7 @@ public class PropertyAnimationActivity extends AppCompatActivity implements View
     private Button cancelButton;
 
     Animator animator;
+    ObjectAnimator objectAnimator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,10 +54,9 @@ public class PropertyAnimationActivity extends AppCompatActivity implements View
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.sports) {
-
-
+            objectAnimator.start();
         } else if (v.getId() == R.id.stop) {
-
+            objectAnimator.cancel();
         }
     }
     /**
@@ -64,6 +65,12 @@ public class PropertyAnimationActivity extends AppCompatActivity implements View
      * */
     private void initAnimation(ImageView imageView){
         //xml形式定义动画
-        animator= AnimatorInflater.loadAnimator(this,0);
+        // animator= AnimatorInflater.loadAnimator(this,0);
+
+        /*----以Java代码的形式定义动画-------------------------*/
+        //ObjectAnimator作用的对象Target View的属性必须提供set，get方法
+        //才能被属性动画使用
+        PropertySetGet propertySetGet=new PropertySetGet(imageView);
+        objectAnimator= ObjectAnimator.ofInt(propertySetGet,"width",500).setDuration(5000);
     }
 }
