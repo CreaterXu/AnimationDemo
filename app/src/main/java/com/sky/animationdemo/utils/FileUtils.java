@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory;
 import android.os.Environment;
 
 import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -40,23 +41,42 @@ public class FileUtils {
             name = data.toString();
         if (style == 0)
             style = FILE_FORMAT_EXT;
-
-        if (data.getClass() == Class.forName("")) ;
-        try {
-            OutputStream outputStream = new FileOutputStream(file);
-            BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
-            byte[] bytes = new byte[1024];
-
-            bufferedOutputStream.write(bytes);
-            bufferedOutputStream.flush();
-            bufferedOutputStream.close();
-            outputStream.close();
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        String stylePath=".txt";
+        if (style==FILE_FORMAT_JPG)
+            stylePath=".jpg";
+        if (file == null) {
+            file.mkdir();
         }
-
-
+        String path1 = file + "/" + path;
+        File file1 = new File(path1);
+        if (file1 == null) {
+            file1.mkdir();
+        }
+        if (data.getClass() == Class.forName("android.graphics.Bitmap")) {
+            String path2 = path1 + "/" + name+stylePath;
+            File file2 = new File(path2);
+            if (file2 == null) {
+                try {
+                    file2.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+                ((Bitmap)data).compress(Bitmap.CompressFormat.JPEG,100,outputStream);
+                byte[] bytes;
+                bytes=outputStream.toByteArray();
+                BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
+                bufferedOutputStream.write(bytes);
+                bufferedOutputStream.flush();
+                bufferedOutputStream.close();
+                outputStream.close();
+            } catch (FileNotFoundException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }
