@@ -51,6 +51,7 @@ public class FileUtils {
         File file1 = new File(path1);
         if (file1 == null) {
             file1.mkdir();
+
         }
         if (data.getClass() == Class.forName("android.graphics.Bitmap")) {
             String path2 = path1 + "/" + name+stylePath;
