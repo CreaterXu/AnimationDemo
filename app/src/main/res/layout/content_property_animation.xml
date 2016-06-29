@@ -11,5 +11,21 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.sky.animationdemo.proprityAnimation.PropertyAnimationActivity"
     tools:showIn="@layout/activity_property_animation">
-
+    <ImageView
+        android:id="@+id/showImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+    <Button
+        android:id="@+id/sports"
+        android:layout_below="@+id/showImageView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="动起来"/>
+    <Button
+        android:id="@+id/stop"
+        android:layout_below="@+id/sports"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="停止"/>
 </RelativeLayout>

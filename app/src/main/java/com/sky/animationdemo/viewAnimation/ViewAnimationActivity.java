@@ -1,6 +1,5 @@
 package com.sky.animationdemo.viewAnimation;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -44,7 +43,7 @@ public class ViewAnimationActivity extends AppCompatActivity implements View.OnC
     public void onClick(View v) {
         if (v.getId() == R.id.sports) {
             //通过xml形式加载view animation
-            animation = AnimationUtils.loadAnimation(this, R.anim.viewanimation);
+            animation = AnimationUtils.loadAnimation(this, R.anim.view_animation);
             //通过代码形式创造动画
             RotateAnimation rotateAnimation = new RotateAnimation(0, 359,moveTxt.getWidth()/2,moveTxt.getHeight()/2);
             rotateAnimation.setDuration(8000);

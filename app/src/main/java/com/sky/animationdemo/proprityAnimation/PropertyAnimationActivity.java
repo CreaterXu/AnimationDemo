@@ -8,6 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import com.sky.animationdemo.R;
+import com.sky.animationdemo.utils.FileUtils;
 
 public class PropertyAnimationActivity extends AppCompatActivity {
 
@@ -17,7 +18,7 @@ public class PropertyAnimationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_property_animation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        //FileUtils.save();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -28,4 +29,8 @@ public class PropertyAnimationActivity extends AppCompatActivity {
         });
     }
 
+    public void onClick(){
+
+
+    }
 }
