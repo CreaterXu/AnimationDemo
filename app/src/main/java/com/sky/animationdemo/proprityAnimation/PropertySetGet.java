@@ -1,5 +1,6 @@
 package com.sky.animationdemo.proprityAnimation;
 
+import android.support.annotation.FloatRange;
 import android.view.View;
 
 /**
@@ -13,6 +14,7 @@ public class PropertySetGet {
     }
     /**
      * 设置宽度
+     * @param width
      * */
     public void  setWidth(int width){
         mview.getLayoutParams().width=width;
@@ -20,8 +22,24 @@ public class PropertySetGet {
     }
     /**
      * 获取宽度
+     * @return int
      * */
     public int  getWidth(){
         return mview.getLayoutParams().width;
     }
+    /**
+     * 设置透明度
+     * @param alpha
+     * */
+    public void setAlpha(@FloatRange(from=0.0, to=1.0)float alpha){
+       mview.setAlpha(alpha);
+    }
+    /**
+     * 获取透明度
+     * @return alpha
+     * */
+    public float getAlpha(){
+        return mview.getAlpha();
+    }
+
 }
