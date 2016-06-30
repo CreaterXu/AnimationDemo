@@ -1,46 +1,24 @@
 package com.sky.animationdemo.proprityAnimation;
 
-import android.animation.Animator;
-import android.animation.AnimatorInflater;
-import android.animation.AnimatorSet;
-import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.view.animation.RotateAnimation;
-import android.widget.Button;
-import android.widget.ImageView;
 
 import com.sky.animationdemo.R;
-import com.sky.animationdemo.viewAnimation.MyInterpolator;
+import com.sky.animationdemo.utils.FileUtils;
 
-public class PropertyAnimationActivity extends AppCompatActivity implements View.OnClickListener{
-    private ImageView imageView;
-    private Button okButton;
-    private Button cancelButton;
+public class PropertyAnimationActivity extends AppCompatActivity {
 
-    Animator animator;
-    ObjectAnimator objectAnimator;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_property_animation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        okButton = (Button) findViewById(R.id.sports);
-        okButton.setOnClickListener(this);
-        cancelButton = (Button) findViewById(R.id.stop);
-        cancelButton.setOnClickListener(this);
-
-        imageView=(ImageView)findViewById(R.id.showImageView);
-
-        initAnimation(imageView);
-        //View;
-        //AnimatorSet
+        //FileUtils.save();
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -51,26 +29,8 @@ public class PropertyAnimationActivity extends AppCompatActivity implements View
         });
     }
 
-    @Override
-    public void onClick(View v) {
-        if (v.getId() == R.id.sports) {
-            objectAnimator.start();
-        } else if (v.getId() == R.id.stop) {
-            objectAnimator.cancel();
-        }
-    }
-    /**
-     * 初始化动画
-     * @param imageView
-     * */
-    private void initAnimation(ImageView imageView){
-        //xml形式定义动画
-        // animator= AnimatorInflater.loadAnimator(this,0);
+    public void onClick(){
 
-        /*----以Java代码的形式定义动画-------------------------*/
-        //ObjectAnimator作用的对象Target View的属性必须提供set，get方法
-        //才能被属性动画使用
-        PropertySetGet propertySetGet=new PropertySetGet(imageView);
-        objectAnimator= ObjectAnimator.ofInt(propertySetGet,"width",500).setDuration(5000);
+
     }
 }
