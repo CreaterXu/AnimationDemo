@@ -1,8 +1,11 @@
 package com.sky.animationdemo.utils;
 
+import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Environment;
+import android.os.StatFs;
+import android.util.Log;
 
 import java.io.BufferedOutputStream;
 import java.io.ByteArrayOutputStream;
@@ -32,7 +35,7 @@ public class FileUtils {
      *
      * @param data,file,path,name,style data类必须具有tostring()
      */
-    public static <O> void save(O data, File file, String path, String name, int style) throws ClassNotFoundException {
+    public static <O> void save(O data, File file, String path, String name, int style)  {
         if (file == null)
             file = root;
         if (path == null)
@@ -44,40 +47,50 @@ public class FileUtils {
         String stylePath=".txt";
         if (style==FILE_FORMAT_JPG)
             stylePath=".jpg";
-        if (file == null) {
+        if (!file.exists()) {
             file.mkdir();
         }
         String path1 = file + "/" + path;
         File file1 = new File(path1);
-        if (file1 == null) {
+        if (!file1.exists()) {
             file1.mkdir();
 
         }
-        if (data.getClass() == Class.forName("android.graphics.Bitmap")) {
-            String path2 = path1 + "/" + name+stylePath;
-            File file2 = new File(path2);
-            if (file2 == null) {
-                try {
-                    file2.createNewFile();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            try {
-                ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-                ((Bitmap)data).compress(Bitmap.CompressFormat.JPEG,100,outputStream);
-                byte[] bytes;
-                bytes=outputStream.toByteArray();
-                BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(outputStream);
-                bufferedOutputStream.write(bytes);
+        try {
+            if (data.getClass() == Class.forName("android.graphics.Bitmap")) {
+                String path2 = path1 + "/" + name+stylePath;
+                FileOutputStream fileOutputStream=new FileOutputStream(path2);
+                ((Bitmap)data).compress(Bitmap.CompressFormat.JPEG,100,fileOutputStream);
+                BufferedOutputStream bufferedOutputStream = new BufferedOutputStream(fileOutputStream);
                 bufferedOutputStream.flush();
                 bufferedOutputStream.close();
-                outputStream.close();
-            } catch (FileNotFoundException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+                fileOutputStream.close();
             }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
+    }
+
+
+    /**
+     * 保存任意对象至一种文件格式style
+     * @param data,style
+     * */
+    public static <O> void save(O data,int style){
+        save(data,null,null,null,style);
+    }
+
+    /**
+     * 获取存储剩余空间
+     * */
+    @TargetApi(18)
+    private static long getFreeSize(){
+        String path=Environment.getExternalStorageState();
+        StatFs statFs=new StatFs(path);
+        return statFs.getAvailableBytes();
     }
 }
